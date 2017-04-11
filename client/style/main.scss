@@ -1,0 +1,8 @@
+@import "normalize.scss";
+@import 'vars.scss';
+@import 'fonts.scss';
+@import "global.scss";
+@import "mixin.scss";
+//@import "../components/**/*.scss";
+@import "../containers/**/*.scss";
+@import "~bootstrap/scss/bootstrap";

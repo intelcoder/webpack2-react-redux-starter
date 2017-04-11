@@ -64,13 +64,29 @@ module.exports = function (env) {
     module: {
       rules: [
         {
-          test: /\.html$/,
+          test: /\.scss/,
+          enforce: "pre",
+          loader: 'import-glob-loader'
+        },
+        {
+          test: /\.(png|jpg|jpeg|gif|svg)$/,
           exclude: /node_modules/,
           use: {
             loader: 'file-loader',
             query: {
-              name: '[name].[ext]'
+              name: 'images/[name].[ext]?[hash]'
             },
+          },
+        },
+        {
+          test: /\.(png|jpg|jpeg|gif|svg)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'url-loader',
+            query: {
+              limit: 8192,
+              name: 'images/[name].[ext]?[hash]'
+            }
           },
         },
         {
@@ -79,6 +95,7 @@ module.exports = function (env) {
           use: [
             'style-loader',
             'css-loader',
+            'postcss-loader',
             'sass-loader',
           ]
         },
@@ -89,6 +106,7 @@ module.exports = function (env) {
             'babel-loader'
           ],
         },
+
       ],
     },
     resolve: {
